@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TrashCollector.Data;
 
 namespace TrashCollector.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210318205115_Customer")]
+    partial class Customer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,15 +50,15 @@ namespace TrashCollector.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "0c23eac7-7831-4956-85d6-3fcc15789a91",
-                            ConcurrencyStamp = "63bcefd8-769b-4d91-b743-3df83991e168",
+                            Id = "51b4aba8-9d9f-4732-843d-94421c10035c",
+                            ConcurrencyStamp = "f6d1d20f-13b9-40ed-bc26-27f6e9f7d2b9",
                             Name = "Employee",
                             NormalizedName = "Employee"
                         },
                         new
                         {
-                            Id = "481881f8-d15d-4957-b00c-62487f5444d8",
-                            ConcurrencyStamp = "f72bdacc-b813-47b2-8883-fb0c8a6a65c9",
+                            Id = "d2212ab5-5689-4d3f-ac87-e1da7cb9ef82",
+                            ConcurrencyStamp = "2b864477-82ea-4d51-9387-d641f49a7b3c",
                             Name = "Customer",
                             NormalizedName = "Customer"
                         });
