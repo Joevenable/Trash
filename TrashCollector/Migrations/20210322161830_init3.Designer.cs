@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TrashCollector.Data;
 
 namespace TrashCollector.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210322161830_init3")]
+    partial class init3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,15 +50,15 @@ namespace TrashCollector.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "01077d23-9648-432e-9934-00771fc1d954",
-                            ConcurrencyStamp = "19816cbb-74ec-48b8-8975-54199cc053f9",
+                            Id = "d98ed6fd-dfb7-4778-8301-206229ec18b9",
+                            ConcurrencyStamp = "952d228b-0523-4f11-bfeb-7884c53829d4",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
-                            Id = "d6b5ff2d-f3b2-4ecb-bd7f-a67fe858f36f",
-                            ConcurrencyStamp = "7d75d59e-3d86-4db8-b1df-7713ba3f393d",
+                            Id = "ea183b3b-0e7d-4c98-9259-d4ca2565bbd3",
+                            ConcurrencyStamp = "650b030f-83a2-4b9f-ae1e-0e56618a3f6a",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         });
@@ -238,13 +240,10 @@ namespace TrashCollector.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<double>("Balance")
-                        .HasColumnType("float");
-
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("ExtraPickUp")
+                    b.Property<DateTime>("ExtraPickUp")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("IdentityUserId")
@@ -262,10 +261,10 @@ namespace TrashCollector.Migrations
                     b.Property<string>("Street")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("VacationHoldEnd")
+                    b.Property<DateTime>("VacationHoldEnd")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("VacationHoldStart")
+                    b.Property<DateTime>("VacationHoldStart")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ZipCode")
@@ -289,9 +288,6 @@ namespace TrashCollector.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Pickups")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("State")

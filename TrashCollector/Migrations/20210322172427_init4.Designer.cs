@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TrashCollector.Data;
 
 namespace TrashCollector.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210322172427_init4")]
+    partial class init4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,15 +50,15 @@ namespace TrashCollector.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "01077d23-9648-432e-9934-00771fc1d954",
-                            ConcurrencyStamp = "19816cbb-74ec-48b8-8975-54199cc053f9",
+                            Id = "03c62728-bffb-421d-8f9c-9144351f8308",
+                            ConcurrencyStamp = "6bfdee5a-0c15-43aa-bf0a-3d51f2738825",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
-                            Id = "d6b5ff2d-f3b2-4ecb-bd7f-a67fe858f36f",
-                            ConcurrencyStamp = "7d75d59e-3d86-4db8-b1df-7713ba3f393d",
+                            Id = "5a6ddc40-2be6-48c5-9040-16e2a41f9695",
+                            ConcurrencyStamp = "0de5c4f5-314e-4538-bd56-7360163b1fb0",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         });
@@ -237,9 +239,6 @@ namespace TrashCollector.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<double>("Balance")
-                        .HasColumnType("float");
 
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");

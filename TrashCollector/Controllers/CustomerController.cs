@@ -39,7 +39,7 @@ namespace TrashCollector.Controllers
         {
             return View();
         }
-
+        
         // POST: CustomerController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]

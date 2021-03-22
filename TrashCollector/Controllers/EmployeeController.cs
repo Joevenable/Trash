@@ -81,6 +81,26 @@ namespace TrashCollector.Controllers
                 return View();
             }
         }
+        public ActionResult Charge(int id)
+        {
+            var chargeid = _context.Customers.Find(id);
+            return View(chargeid);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Charge(int id, Customer customer)
+        {
+            try
+            {
+                customer.Balance += 15;
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
 
         // GET: EmployeeController/Delete/5
         public ActionResult Delete(int id)
