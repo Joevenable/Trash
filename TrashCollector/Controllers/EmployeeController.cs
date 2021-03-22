@@ -5,22 +5,34 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TrashCollector.Data;
+using TrashCollector.Models;
 
 namespace TrashCollector.Controllers
 {
+
     [Authorize(Roles = "Employee")]
     public class EmployeeController : Controller
     {
+
+        private ApplicationDbContext _context;
+        public EmployeeController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+        
         // GET: EmployeeController
         public ActionResult Index()
         {
-            return View();
+            var employee = _context.Employees;
+            return View(employee);
         }
 
         // GET: EmployeeController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var employee = _context.Employees.Find(id);
+            return View(employee);
         }
 
         // GET: EmployeeController/Create
@@ -32,10 +44,12 @@ namespace TrashCollector.Controllers
         // POST: EmployeeController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Employee employee)
         {
             try
             {
+                _context.Employees.Add(employee);
+                _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -47,16 +61,19 @@ namespace TrashCollector.Controllers
         // GET: EmployeeController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var employee = _context.Employees.Find(id);
+            return View(employee);
         }
 
         // POST: EmployeeController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(Employee employee)
         {
             try
             {
+                _context.Employees.Update(employee);
+                _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -68,16 +85,19 @@ namespace TrashCollector.Controllers
         // GET: EmployeeController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var employee = _context.Employees.Find(id);
+            return View(employee);
         }
 
         // POST: EmployeeController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(Employee employee)
         {
             try
             {
+                _context.Employees.Remove(employee);
+                _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             catch
