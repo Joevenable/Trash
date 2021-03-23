@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TrashCollector.Data;
 
 namespace TrashCollector.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210322201924_init6")]
+    partial class init6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,15 +50,15 @@ namespace TrashCollector.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "a347919c-9d8e-4a0f-9581-676dd77da435",
-                            ConcurrencyStamp = "d22efc55-3bd3-4772-aa96-66d029d27bd0",
+                            Id = "5f702bec-930f-49f0-9f0d-2f1a91e25f53",
+                            ConcurrencyStamp = "ce0b84ab-57e4-4a27-b35f-dd985d7a7d37",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
-                            Id = "c3777dfe-ecc5-4665-84ba-26ea52f9b1b5",
-                            ConcurrencyStamp = "7ab3a130-1918-496c-972d-469349658856",
+                            Id = "e74a20b2-5acd-4489-a132-58268ced7269",
+                            ConcurrencyStamp = "719e3b0c-251a-4757-bade-e101be4e5eac",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         });
@@ -291,8 +293,8 @@ namespace TrashCollector.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("Pickups")
-                        .HasColumnType("bit");
+                    b.Property<string>("Pickups")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("State")
                         .HasColumnType("nvarchar(max)");

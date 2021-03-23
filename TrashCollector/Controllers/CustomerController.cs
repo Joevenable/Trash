@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using TrashCollector.Data;
 using TrashCollector.Models;
@@ -23,7 +24,12 @@ namespace TrashCollector.Controllers
         // GET: CustomerController
         public ActionResult Index()
         {
-            var customer = _context.Customers;
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var customer = _context.Customers.Where(c => c.IdentityUserId == userId).SingleOrDefault();
+            if (customer == null)
+            {
+                return RedirectToAction(nameof(Create));
+            }
             return View(customer);
         }
 
@@ -47,6 +53,9 @@ namespace TrashCollector.Controllers
         {
             try
             {
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                customers.IdentityUserId = userId;
+
                 _context.Customers.Add(customers);
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
@@ -60,7 +69,12 @@ namespace TrashCollector.Controllers
         // GET: CustomerController/Edit/5
         public ActionResult Edit(int id)
         {
-            var customer = _context.Customers.Find(id);
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var customer = _context.Customers.Where(c => c.IdentityUserId == userId).SingleOrDefault();
+            if (customer == null)
+            {
+                return RedirectToAction(nameof(Create));
+            }
             return View(customer);
         }
 
@@ -71,6 +85,9 @@ namespace TrashCollector.Controllers
         {
             try
             {
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                customers.IdentityUserId = userId;
+
                 _context.Customers.Update(customers);
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));

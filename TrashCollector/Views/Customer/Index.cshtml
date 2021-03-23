@@ -1,0 +1,87 @@
+﻿@model TrashCollector.Models.Customer
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Street)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.State)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ZipCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PickUpDay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExtraPickUp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VacationHoldStart)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VacationHoldEnd)
+            </th>
+            
+           
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Street)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.State)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.ZipCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.PickUpDay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.ExtraPickUp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.VacationHoldStart)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.VacationHoldEnd)
+            </td>
+            
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@Model.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
