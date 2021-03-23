@@ -24,6 +24,7 @@ namespace TrashCollector.Controllers
         // GET: EmployeeController
         public ActionResult Index()
         {
+            
             var employee = _context.Employees;
             return View(employee);
         }
@@ -81,18 +82,18 @@ namespace TrashCollector.Controllers
                 return View();
             }
         }
-        public ActionResult Charge(int id)
+        public ActionResult PickUpCharge(int id)
         {
             var chargeid = _context.Customers.Find(id);
             return View(chargeid);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Charge(int id, Customer customer)
+        public ActionResult PickUpCharge(int id, Customer customer)
         {
             try
             {
-                customer.Balance += 15;
+                customer.Balance += 30;
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
