@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using TrashCollector.Data;
 using TrashCollector.Models;
@@ -24,9 +25,16 @@ namespace TrashCollector.Controllers
         // GET: EmployeeController
         public ActionResult Index()
         {
-            
-            var employee = _context.Employees;
-            return View(employee);
+
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var employee = _context.Employees.Where(e => e.IdentityUserId == userId).SingleOrDefault();
+            if (employee == null)
+            {
+                string currentDayOfWeek = DateTime.Now.DayOfWeek.ToString(); 
+                var customerSameZip = _context.Customers.Where(c => c.ZipCode == employee.ZipCode).ToList();
+            }
+            return View();
+
         }
 
         // GET: EmployeeController/Details/5
@@ -49,6 +57,9 @@ namespace TrashCollector.Controllers
         {
             try
             {
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                employee.IdentityUserId = userId;
+
                 _context.Employees.Add(employee);
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
@@ -62,7 +73,12 @@ namespace TrashCollector.Controllers
         // GET: EmployeeController/Edit/5
         public ActionResult Edit(int id)
         {
-            var employee = _context.Employees.Find(id);
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var employee = _context.Employees.Where(c => c.IdentityUserId == userId).SingleOrDefault();
+            if (employee == null)
+            {
+                return RedirectToAction(nameof(Create));
+            }
             return View(employee);
         }
 
@@ -73,6 +89,9 @@ namespace TrashCollector.Controllers
         {
             try
             {
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                employee.IdentityUserId = userId;
+
                 _context.Employees.Update(employee);
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
