@@ -21,6 +21,7 @@ namespace TrashCollector.Models
         public DateTime? ExtraPickUp { get; set; }
         public DateTime? VacationHoldStart { get; set; }
         public DateTime? VacationHoldEnd { get; set; }
+        public bool TrashPickedUp { get; set; }
         public int Balance { get; set; }
 
 

@@ -30,13 +30,19 @@ namespace TrashCollector.Controllers
             var employee = _context.Employees.Where(e => e.IdentityUserId == userId).SingleOrDefault();
             if (employee == null)
             {
-                string currentDayOfWeek = DateTime.Now.DayOfWeek.ToString(); 
-                var customerSameZip = _context.Customers.Where(c => c.ZipCode == employee.ZipCode).ToList();
+                return RedirectToAction(nameof(Create));
             }
-            return View();
+            return RedirectToAction(nameof(Default));
 
         }
-
+        public ActionResult Default()
+        {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var employee = _context.Employees.Where(e => e.IdentityUserId == userId).SingleOrDefault();
+            var customerSameZip = _context.Customers.Where(c => c.ZipCode == employee.ZipCode
+            && c.PickUpDay == DateTime.Now.DayOfWeek.ToString()).Where(d => d.VacationHoldStart.ToString() != DateTime.Now.DayOfWeek.ToString()).ToList();
+            return View(employeeData);
+        }
         // GET: EmployeeController/Details/5
         public ActionResult Details(int id)
         {
